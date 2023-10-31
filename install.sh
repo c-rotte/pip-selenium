@@ -18,6 +18,11 @@ gcc -nostartfiles -fpic -shared bind.c -o bind.so -ldl -D_GNU_SOURCE || { echo "
 mkdir -p ~/.bind
 cp bind.so ~/.bind/bind.so || { echo "Copy failed"; exit 1; }
 
+# download geckodriver
+wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz -O ~/.bind/geckodriver.tar.gz
+tar -xf ~/.bind/geckodriver.tar.gz --directory ~/.bind
+rm ~/.bind/geckodriver.tar.gz
+
 # install selenium
 cd py || { echo "Directory 'py' not found"; exit 1; }
 if pip3 show selenium &> /dev/null; then
